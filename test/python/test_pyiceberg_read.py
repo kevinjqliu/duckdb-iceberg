@@ -59,7 +59,8 @@ def rest_catalog(bearer_token):
 def duckdb_connection(bearer_token):
     conn = duckdb.connect()
     # Create S3 secret
-    conn.execute("""
+    conn.execute(
+        """
         CREATE SECRET (
             TYPE S3,
             KEY_ID 'admin',
@@ -68,16 +69,19 @@ def duckdb_connection(bearer_token):
             URL_STYLE 'path',
             USE_SSL 0
         );
-    """)
+    """
+    )
 
     # Attach Iceberg catalog
-    conn.execute(f"""
+    conn.execute(
+        f"""
         ATTACH '' AS my_datalake (
             TYPE ICEBERG,
             ENDPOINT 'http://127.0.0.1:8181',
             TOKEN '{bearer_token}'
         );
-    """)
+    """
+    )
     return conn
 
 
