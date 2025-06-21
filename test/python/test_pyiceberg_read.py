@@ -75,7 +75,7 @@ def duckdb_connection(bearer_token):
         ATTACH '' AS my_datalake (
             TYPE ICEBERG,
             ENDPOINT 'http://127.0.0.1:8181',
-            TOKEN '{bearer_token}',
+            TOKEN '{bearer_token}'
         );
     """)
     return conn
