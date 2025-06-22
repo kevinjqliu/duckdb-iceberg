@@ -82,6 +82,11 @@ def duckdb_connection(bearer_token):
         );
     """
     )
+
+    # Use latest avro from core_nightly
+    conn.execute("install avro from core_nightly")
+    conn.execute("load avro")
+
     return conn
 
 
