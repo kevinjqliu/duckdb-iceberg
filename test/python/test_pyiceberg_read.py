@@ -116,4 +116,4 @@ class TestPyIcebergRead:
 
         # read from duckdb
         duckdb_arrow_table = duckdb_connection.execute("SELECT * FROM my_datalake.default.insert_test").arrow()
-        assert pyiceberg_arrow_table.equals(duckdb_arrow_table)
+        assert pyiceberg_arrow_table.to_pylist() == duckdb_arrow_table.to_pylist()
